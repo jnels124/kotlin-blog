@@ -9,6 +9,7 @@ plugins {
     kotlin("plugin.spring") version "1.2.71"
     id("com.gradle.build-scan") version "2.3"
     kotlin("plugin.allopen") version "1.2.71"
+    kotlin("kapt") version "1.2.71"
 }
 
 group = "org.example"
@@ -37,10 +38,13 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
+        exclude(module = "mockito-core")
     }
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("com.ninja-squad:springmockk:1.1.2")
     testCompile("org.junit.jupiter:junit-jupiter-params:5.4.2")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 idea.module.isDownloadJavadoc = true
